@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    
+  tasks:
+  - name: Updating the current compose file
+    replace:
+      path: /home/ec2-user/divyanshi/ansible/docker-compose.yml
+      regexp: 'vaibhavrajnathchauhan\/expense-sharing:*(.+)$'
+      replace: "vaibhavrajnathchauhan/expense-sharing:{{ BUILD_ID }}"
+
+  # docker compose up
+  - name: Running the container
+    docker_compose:
+      project_src: /home/ec2-user/divyanshi/ansible
+      build: false
+      restarted: true

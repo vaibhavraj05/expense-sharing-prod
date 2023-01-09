@@ -1,0 +1,5 @@
+[slave]
+44.205.255.7 ansible_user=ec2-user
+
+[localhost]
+127.0.0.1 ansible_user=ec2-user
